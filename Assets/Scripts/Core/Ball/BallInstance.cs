@@ -10,6 +10,7 @@ namespace Core.Ball
     {
         [Inject] private BallConfig _config;
         [SerializeField] private BallController _controller;
+        public Transform Transform => transform;
         
         public BallConfig Stats => _config;
         public BallController BallController => _controller;

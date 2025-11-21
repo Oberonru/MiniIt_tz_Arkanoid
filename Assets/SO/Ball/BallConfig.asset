@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9c1d7619e24bfba8bb94409736105b, type: 3}
   m_Name: BallConfig
   m_EditorClassIdentifier: C::Core.Configs.Ball.BallConfig
-  _speed: 4
+  _speed: 3
   _ballStateType: 1
+  _verticalVelocity: 15
