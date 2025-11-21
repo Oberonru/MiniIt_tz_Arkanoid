@@ -10,6 +10,7 @@ namespace Core.Platform
     {
         [Inject] private PlatformConfig  _config;
         [SerializeField] PlatformController controller;
+        public Transform Transform => transform;
         
         public PlatformConfig Stats => _config;
         public PlatformController Controller => controller;
