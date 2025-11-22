@@ -1,6 +1,4 @@
-﻿using Core.Bricks;
-using Core.Bricks.SO;
-using Core.Platform;
+﻿using Core.Platform;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -21,8 +19,10 @@ namespace Core.Ball.Components
         private float _platformWidth = 1f;
         private CircleCollider2D _circleCollider;
 
-        // флаг для одного урона за физический шаг
         private bool _damagedThisFixedStep;
+
+        private const float MinVerticalVelocity = 0.2f;
+        private const float HorizontalJitter = 0.1f;
 
         private void Awake()
         {
@@ -100,16 +100,33 @@ namespace Core.Ball.Components
 
                 if (direction.y < 0f) direction.y = -direction.y;
 
-                _rigidbody.linearVelocity = direction * _ball.Stats.Speed;
+                var velocity = direction * _ball.Stats.Speed;
+
+                if (Mathf.Abs(velocity.y) < MinVerticalVelocity)
+                {
+                    float currentVy = _rigidbody.linearVelocity.y;
+                    velocity.y = Mathf.Sign(currentVy) * MinVerticalVelocity;
+                }
+
+                _rigidbody.linearVelocity = velocity;
                 return;
             }
 
-            if (_damagedThisFixedStep) return;
-
             if (collision.collider.TryGetComponent(out Brick brick))
             {
-                brick.TakeDamage(1);
-                _damagedThisFixedStep = true;
+                if (!_damagedThisFixedStep)
+                {
+                    brick.TakeDamage(1);
+                    _damagedThisFixedStep = true;
+                }
+
+                return;
+            }
+
+            {
+                var velocity = _rigidbody.linearVelocity;
+                velocity.x += Random.Range(-HorizontalJitter, HorizontalJitter);
+                _rigidbody.linearVelocity = velocity;
             }
         }
     }
