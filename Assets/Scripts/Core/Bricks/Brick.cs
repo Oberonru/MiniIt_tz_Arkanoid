@@ -1,30 +1,37 @@
 ﻿using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class Brick : MonoBehaviour
 {
-    [SerializeField] private int _health = 2;
-    public int Health => _health;
-    [SerializeField] private Sprite _destroyedSprite;
+    [SerializeField] private Sprite _damagedSprite;
 
     private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Tilemap _tilemap;
+    private int _health;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        if (_tilemap == null) _tilemap = FindObjectOfType<Tilemap>();
+    }
+
+    public void Init(int health, Sprite damagedSprite)
+    {
+        _health = health;
+        _damagedSprite = damagedSprite;
     }
 
     public void TakeDamage(int amount)
     {
         _health -= amount;
 
-        if (_health <= 0)
+        if (_health == 1)
         {
-            Vector3Int cell = _tilemap.WorldToCell(transform.position);
-            _tilemap.SetTile(cell, null);
-
+            if (_damagedSprite != null)
+            {
+                _spriteRenderer.sprite = _damagedSprite;
+            }
+               
+        }
+        else if (_health <= 0)
+        {
             Destroy(gameObject);
         }
     }

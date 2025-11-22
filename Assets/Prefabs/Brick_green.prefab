@@ -80,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5e4161108cd131b4b9b836810d3c1bfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,5 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7e26b28401405a8dbc17239a478ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: C::Core.Bricks.Brick
-  health: 2
-  destroyedSprite: {fileID: 21300000, guid: 48f571cdebc558b4d9aac890383ec2e2, type: 3}
+  _damagedSprite: {fileID: 21300000, guid: 48f571cdebc558b4d9aac890383ec2e2, type: 3}

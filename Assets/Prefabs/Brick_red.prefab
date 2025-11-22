@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: C::Core.Bricks.Brick
   _health: 2
-  _destroyedSprite: {fileID: 21300000, guid: 31b35d7fd71270744977c241d1bc4bb0, type: 3}
+  _damagedSprite: {fileID: 21300000, guid: 31b35d7fd71270744977c241d1bc4bb0, type: 3}

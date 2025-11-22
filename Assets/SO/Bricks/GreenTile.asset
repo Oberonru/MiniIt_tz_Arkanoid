@@ -37,3 +37,4 @@ MonoBehaviour:
   _destroyedSprite: {fileID: 21300000, guid: 48f571cdebc558b4d9aac890383ec2e2, type: 3}
   _health: 2
   _hitColor: {r: 0.3529412, g: 0.10588236, b: 0.03137255, a: 1}
+  _prefab: {fileID: 5650854912184575714, guid: 9383e880d39c24841a14865b3b1da887, type: 3}
