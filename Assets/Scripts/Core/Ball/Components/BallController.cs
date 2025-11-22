@@ -1,6 +1,9 @@
-﻿using Core.Platform;
+﻿using Core.Bricks;
+using Core.Bricks.SO;
+using Core.Platform;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Core.Ball.Components
 {
@@ -9,6 +12,7 @@ namespace Core.Ball.Components
     {
         [SerializeField] private PlatformInstance _platform;
         [SerializeField] private BallInstance _ball;
+        [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Transform _fixedBallPoint;
 
         [SerializeField] private float _maxAngle = 60f;    
@@ -84,15 +88,23 @@ namespace Core.Ball.Components
         {
             if (collision.gameObject.TryGetComponent(out PlatformInstance platform))
             {
-                float offset = (_ball.Transform.position.x - _platform.Transform.position.x) / (_platformWidth / 2f);
+                var offset = (_ball.Transform.position.x - _platform.Transform.position.x) / (_platformWidth / 2f);
                 offset = Mathf.Clamp(offset, -1f, 1f);
 
-                float angle = offset * _maxAngle * Mathf.Deg2Rad;
-                Vector2 direction = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)).normalized;
+                var angle = offset * _maxAngle * Mathf.Deg2Rad;
+                var direction = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)).normalized;
 
                 if (direction.y < 0f) direction.y = -direction.y;
 
                 _rigidbody.linearVelocity = direction * _ball.Stats.Speed;
+            }
+
+            else
+            {
+                if (collision.gameObject.TryGetComponent(out Brick brick))
+                {
+                    brick.TakeDamage(1);
+                }
             }
         }
     }
