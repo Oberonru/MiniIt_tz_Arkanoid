@@ -15,14 +15,14 @@ namespace Core.Ball.Components
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Transform _fixedBallPoint;
 
-        [SerializeField] private float _maxAngle = 60f;    
-        [SerializeField] private float _startEpsilon = 0.05f; 
-
         private Rigidbody2D _rigidbody;
         private Vector2 _currentPosition;
         private float _ballRadius;
         private float _platformWidth = 1f;
         private CircleCollider2D _circleCollider;
+
+        // флаг для одного урона за физический шаг
+        private bool _damagedThisFixedStep;
 
         private void Awake()
         {
@@ -57,11 +57,16 @@ namespace Core.Ball.Components
             RefreshBallPosition();
         }
 
+        private void FixedUpdate()
+        {
+            _damagedThisFixedStep = false;
+        }
+
         private async void BallMoving()
         {
             _ball.Stats.StateType = BallStateType.Moving;
 
-            transform.position = _fixedBallPoint.position + new Vector3(0f, _ballRadius + _startEpsilon, 0f);
+            transform.position = _fixedBallPoint.position + new Vector3(0f, _ballRadius + _ball.Stats.StartEpsilon, 0f);
             Physics2D.SyncTransforms();
 
             var targetSpeed = _ball.Stats.Speed;
@@ -71,7 +76,6 @@ namespace Core.Ball.Components
             var velocity = new Vector2(vx, desiredVertical);
 
             _rigidbody.linearVelocity = velocity;
-            
         }
 
         private void RefreshBallPosition()
@@ -91,20 +95,21 @@ namespace Core.Ball.Components
                 var offset = (_ball.Transform.position.x - _platform.Transform.position.x) / (_platformWidth / 2f);
                 offset = Mathf.Clamp(offset, -1f, 1f);
 
-                var angle = offset * _maxAngle * Mathf.Deg2Rad;
+                var angle = offset * _ball.Stats.MaxAngle * Mathf.Deg2Rad;
                 var direction = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)).normalized;
 
                 if (direction.y < 0f) direction.y = -direction.y;
 
                 _rigidbody.linearVelocity = direction * _ball.Stats.Speed;
+                return;
             }
 
-            else
+            if (_damagedThisFixedStep) return;
+
+            if (collision.collider.TryGetComponent(out Brick brick))
             {
-                if (collision.gameObject.TryGetComponent(out Brick brick))
-                {
-                    brick.TakeDamage(1);
-                }
+                brick.TakeDamage(1);
+                _damagedThisFixedStep = true;
             }
         }
     }
