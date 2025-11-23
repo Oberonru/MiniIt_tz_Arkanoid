@@ -6,9 +6,12 @@ namespace Core.Audio
     {
         [SerializeField] private AudioSource _sfxSource;
         [SerializeField] private AudioSource _musicSource;
+        [SerializeField, Range(0f, 1f)] private float _minPitch = 0.9f;
+        [SerializeField, Range(1f, 2f)] private float _maxPitch = 1.1f;
 
         public void PlaySfx(AudioClip clip)
         {
+            _sfxSource.pitch = Random.Range(_minPitch, _minPitch);
             _sfxSource.PlayOneShot(clip);
         }
 

@@ -1,11 +1,14 @@
-﻿using Core.Bricks.SO;
+﻿using Core.Bricks;
+using Core.Bricks.SO;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Zenject;
 
 namespace Core.Game
 {
     public class LevelLoader : MonoBehaviour
     {
+        [Inject] private DiContainer _di;
         [SerializeField] private Tilemap _levelTilemap;
 
         private void Start()
@@ -25,10 +28,10 @@ namespace Core.Game
                 {
                     var worldPos = _levelTilemap.CellToWorld(pos) + _levelTilemap.tileAnchor;
 
-                    var brickObj = Instantiate(brickTile.Prefab, worldPos, Quaternion.identity, transform);
+                    var brickObj = _di.InstantiatePrefab(brickTile.Prefab, worldPos, Quaternion.identity, transform);
 
                     var brick = brickObj.GetComponent<Brick>();
-                    brick.Init(brickTile.Health, brickTile.DestroyedSprite);
+                    brick.Init(brickTile.MaxHealth, brickTile.DestroyedSprite);
                 }
             }
 

@@ -1,38 +1,52 @@
-﻿using UnityEngine;
+﻿using Core.Audio;
+using Core.BaseComponents;
+using Core.Configs.Audio;
+using UniRx;
+using UnityEngine;
+using Zenject;
 
-public class Brick : MonoBehaviour
+namespace Core.Bricks
 {
-    [SerializeField] private Sprite _damagedSprite;
-
-    private SpriteRenderer _spriteRenderer;
-    private int _health;
-
-    private void Awake()
+    [RequireComponent(typeof(HealthComponent))]
+    public class Brick : MonoBehaviour
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        [Inject] private IAudioHandler _audioHandler;
+        [Inject] private AudioClipsConfig _config;
+        [SerializeField] private Sprite _damagedSprite;
+        [SerializeField] private HealthComponent _healthComponent;
+        public HealthComponent HealthComponent => _healthComponent;
 
-    public void Init(int health, Sprite damagedSprite)
-    {
-        _health = health;
-        _damagedSprite = damagedSprite;
-    }
+        private SpriteRenderer _spriteRenderer;
 
-    public void TakeDamage(int amount)
-    {
-        _health -= amount;
-
-        if (_health == 1)
+        private void Start()
         {
-            if (_damagedSprite != null)
-            {
-                _spriteRenderer.sprite = _damagedSprite;
-            }
-               
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
-        else if (_health <= 0)
+
+        private void OnEnable()
         {
-            Destroy(gameObject);
+            _healthComponent.OnHit.Subscribe(_ =>
+            {
+                _audioHandler?.PlaySfx(_config.BrickHits);
+                _spriteRenderer.sprite = _damagedSprite;
+            }).AddTo(this);
+            
+            _healthComponent.OnDead.Take(1).Subscribe(_ =>
+            {
+                _audioHandler?.PlaySfx(_config.DestroyClip);
+                Destroy(gameObject);
+            }).AddTo(this);
+        }
+
+        private void OnValidate()
+        {
+            if (_healthComponent == null) _healthComponent = GetComponent<HealthComponent>();
+        }
+
+        public void Init(int health, Sprite damagedSprite)
+        {
+            _healthComponent.Init(health);
+            _damagedSprite = damagedSprite;
         }
     }
 }

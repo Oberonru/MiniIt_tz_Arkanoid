@@ -1093,6 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e1160791d24fe2849f078e8c26124b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: C::Core.Audio.AudioPlayer
+  _platform: {fileID: 50597471}
 --- !u!4 &924641639
 Transform:
   m_ObjectHideFlags: 0

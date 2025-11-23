@@ -1,4 +1,5 @@
-﻿using Core.Platform;
+﻿using Core.Bricks;
+using Core.Platform;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -116,7 +117,7 @@ namespace Core.Ball.Components
             {
                 if (!_damagedThisFixedStep)
                 {
-                    brick.TakeDamage(1);
+                    brick.HealthComponent.TakeDamage(1);
                     _damagedThisFixedStep = true;
                 }
 
