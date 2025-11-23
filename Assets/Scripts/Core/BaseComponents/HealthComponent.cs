@@ -12,8 +12,8 @@ namespace Core.BaseComponents
         public IObservable<int> OnHealthChanged => _changed;
         private Subject<int> _changed = new();
 
-        public IObservable<Unit> OnDead => _dead;
-        private Subject<Unit> _dead = new();
+        public IObservable<Unit> OnDestroyed => _destroyed;
+        private Subject<Unit> _destroyed = new();
 
         public int MaxHealth
         {
@@ -39,7 +39,7 @@ namespace Core.BaseComponents
         {
             _hit?.OnCompleted();
             _changed?.OnCompleted();
-            _dead?.OnCompleted();
+            _destroyed?.OnCompleted();
         }
 
         public void Init(int health)
@@ -56,7 +56,7 @@ namespace Core.BaseComponents
             _hit?.OnNext(Unit.Default);
             _changed?.OnNext(_currentHealth);
 
-            if (CurrentHealth <= 0) _dead?.OnNext(Unit.Default);
+            if (CurrentHealth <= 0) _destroyed?.OnNext(Unit.Default);
         }
 
         public void Heal(int heal)

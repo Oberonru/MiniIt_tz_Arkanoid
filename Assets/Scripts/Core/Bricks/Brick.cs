@@ -18,6 +18,9 @@ namespace Core.Bricks
 
         private SpriteRenderer _spriteRenderer;
 
+        public int Reward => _reward;
+        private int _reward;
+
         private void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,7 +34,7 @@ namespace Core.Bricks
                 _spriteRenderer.sprite = _damagedSprite;
             }).AddTo(this);
             
-            _healthComponent.OnDead.Take(1).Subscribe(_ =>
+            _healthComponent.OnDestroyed.Take(1).Subscribe(_ =>
             {
                 _audioHandler?.PlaySfx(_config.DestroyClip);
                 Destroy(gameObject);
@@ -43,10 +46,11 @@ namespace Core.Bricks
             if (_healthComponent == null) _healthComponent = GetComponent<HealthComponent>();
         }
 
-        public void Init(int health, Sprite damagedSprite)
+        public void Init(int health, Sprite damagedSprite, int reward)
         {
             _healthComponent.Init(health);
             _damagedSprite = damagedSprite;
+            _reward = reward;
         }
     }
 }

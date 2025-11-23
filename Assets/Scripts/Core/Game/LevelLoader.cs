@@ -10,8 +10,9 @@ namespace Core.Game
     {
         [Inject] private DiContainer _di;
         [SerializeField] private Tilemap _levelTilemap;
+        [SerializeField] private GameManager _gameManager;
 
-        private void Start()
+        private void Awake()
         {
             SpawnBricksFromTilemap();
         }
@@ -31,7 +32,8 @@ namespace Core.Game
                     var brickObj = _di.InstantiatePrefab(brickTile.Prefab, worldPos, Quaternion.identity, transform);
 
                     var brick = brickObj.GetComponent<Brick>();
-                    brick.Init(brickTile.MaxHealth, brickTile.DestroyedSprite);
+                    brick.Init(brickTile.MaxHealth, brickTile.DestroyedSprite, brickTile.Reward);
+                    _gameManager.RegisterBrick(brick);
                 }
             }
 

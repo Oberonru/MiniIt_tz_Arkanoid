@@ -39,3 +39,4 @@ MonoBehaviour:
   _currentHealth: 0
   _hitColor: {r: 0.3529412, g: 0.10588236, b: 0.03137255, a: 1}
   _prefab: {fileID: 3027028599609897990, guid: e764a2d7e826659459073385b03796a4, type: 3}
+  _reward: 4
