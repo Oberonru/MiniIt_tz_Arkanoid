@@ -10,9 +10,11 @@ namespace Core.Configs.Audio
         [SerializeField] private AudioClip _levelMusic;
         [SerializeField] private AudioClip[] _brickHits;
         [SerializeField] private AudioClip _destroyClip;
+        [SerializeField] private AudioClip _platformConcern;
         
         public AudioClip LevelMusic => _levelMusic;
         public AudioClip[] BrickHits => _brickHits;
         public AudioClip DestroyClip => _destroyClip;
+        public AudioClip PlatformConcern => _platformConcern;
     }
 }

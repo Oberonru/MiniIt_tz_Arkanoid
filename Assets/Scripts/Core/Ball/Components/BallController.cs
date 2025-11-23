@@ -1,8 +1,10 @@
-﻿using Core.Bricks;
+﻿using System;
+using Core.Bricks;
 using Core.Platform;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 namespace Core.Ball.Components
 {
@@ -13,6 +15,9 @@ namespace Core.Ball.Components
         [SerializeField] private BallInstance _ball;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Transform _fixedBallPoint;
+
+        public IObservable<Unit> OnPlatformConcern => _concern;
+        public Subject<Unit> _concern =  new();
 
         private Rigidbody2D _rigidbody;
         private Vector2 _currentPosition;
@@ -109,6 +114,8 @@ namespace Core.Ball.Components
                     velocity.y = Mathf.Sign(currentVy) * MinVerticalVelocity;
                 }
 
+                _concern?.OnNext(Unit.Default);
+                
                 _rigidbody.linearVelocity = velocity;
                 return;
             }

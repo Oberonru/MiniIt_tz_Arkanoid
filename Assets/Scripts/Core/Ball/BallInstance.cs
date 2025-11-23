@@ -13,7 +13,7 @@ namespace Core.Ball
         public Transform Transform => transform;
         
         public BallConfig Stats => _config;
-        public BallController BallController => _controller;
+        public BallController Controller => _controller;
 
         private void OnValidate()
         {
