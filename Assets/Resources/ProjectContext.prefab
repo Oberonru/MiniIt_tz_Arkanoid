@@ -47,6 +47,52 @@ MonoBehaviour:
   _asSingle: 1
   _dontDestroyOnLoad: 1
   _prefab: {fileID: 6314748570357076331, guid: 58002a8f3d99f9b4fba238821065d185, type: 3}
+--- !u!1 &1020333524421006925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663123014276170828}
+  - component: {fileID: 9034446074295643723}
+  m_Layer: 0
+  m_Name: ServiceProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1663123014276170828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020333524421006925}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.45721, y: -0.3258, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 576853920496226744}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9034446074295643723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020333524421006925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb2a60e4d3b4373a5cf3913fd7e3f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Services.ServiceProvider
+  _elements:
+  - {fileID: 11400000, guid: 60e218c448a81014a82dd36afc1e921a, type: 2}
 --- !u!1 &4916664341709580078
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +172,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2729793346175449535}
+  - {fileID: 1663123014276170828}
   - {fileID: 1102642146508315207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,6 +191,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 2123041451315229792}
+  - {fileID: 9034446074295643723}
   - {fileID: 3615479293358959392}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1

@@ -15,3 +15,10 @@ MonoBehaviour:
   _speed: 4
   _ballStateType: 1
   _verticalVelocity: 15
+  _maxAngle: 60
+  _startEpsilon: 0.05
+  _maxSpeed: 15
+  _platformLoopCount: 4
+  _platformAcceleration: 0.2
+  _brickLoopCount: 2
+  _brickAcceleration: 0.1
