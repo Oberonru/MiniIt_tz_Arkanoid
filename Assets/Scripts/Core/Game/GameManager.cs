@@ -23,7 +23,7 @@ namespace Core.Game
             _loseZone.OnLose.Subscribe(_ => Lose())
                 .AddTo(this);
         }
-        
+
         public void RegisterBrick(Brick brick)
         {
             if (brick == null) return;
@@ -31,7 +31,16 @@ namespace Core.Game
             _bricks.Add(brick);
             
             brick.HealthComponent.OnDestroyed.
-                Subscribe(_ => _view.AddScore(brick.Reward)).AddTo(this);
+                Subscribe(_ =>
+                {
+                    _view.AddScore(brick.Reward);
+                    _bricks.Remove(brick);
+
+                    if (_bricks.Count <= 0)
+                    {
+                        _screenHandler.SetScreen(ScreenType.WinScreen);
+                    }
+                }).AddTo(this);
         }
 
         private void Lose()
