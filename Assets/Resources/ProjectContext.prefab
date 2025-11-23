@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &675293830340500476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102642146508315207}
+  - component: {fileID: 3615479293358959392}
+  m_Layer: 0
+  m_Name: AudioHandlerInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102642146508315207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675293830340500476}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 576853920496226744}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3615479293358959392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675293830340500476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a30e49c0c04785b96e3b4d66814e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: C::Core.Audio.Installer.AudioHandlerInstaller
+  _asSingle: 1
+  _dontDestroyOnLoad: 1
+  _prefab: {fileID: 6314748570357076331, guid: 58002a8f3d99f9b4fba238821065d185, type: 3}
 --- !u!1 &4916664341709580078
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +94,7 @@ MonoBehaviour:
   _elements:
   - {fileID: 11400000, guid: b9014caca87025446b1cd7c0adc6fedf, type: 2}
   - {fileID: 11400000, guid: 8d35ef93377567240825f98454e78890, type: 2}
+  - {fileID: 11400000, guid: ca7b8e0fcb3a69c42bd681b808e91665, type: 2}
 --- !u!1 &6857736749285570783
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +126,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2729793346175449535}
+  - {fileID: 1102642146508315207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1822211486239309895
@@ -95,6 +144,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 2123041451315229792}
+  - {fileID: 3615479293358959392}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d25f6bb5554c4895c0c4c5e3d8a817, type: 3}
+  m_Name: AudioClipsConfig
+  m_EditorClassIdentifier: C::Core.Configs.Audio.AudioClipsConfig
+  _levelMusic: {fileID: 8300000, guid: 9fbe4e063e14f9b4b94c9ec71dd7c7ed, type: 3}
+  _brickHits:
+  - {fileID: 8300000, guid: f041d009512098d4b8066c26b03a73d1, type: 3}
+  - {fileID: 8300000, guid: b2003619acdc24443bca763eba3bb6fa, type: 3}
+  _destroyClip: {fileID: 8300000, guid: 14178fdd2cebafa468e48c91bf023575, type: 3}
