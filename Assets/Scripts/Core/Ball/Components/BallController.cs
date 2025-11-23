@@ -30,6 +30,7 @@ namespace Core.Ball.Components
 
         private const float MinVerticalVelocity = 0.2f;
         private const float HorizontalJitter = 0.1f;
+        private const float MinAngle = 10f;
 
         private float _targetSpeed;
         private int _platformCollisionCount;
@@ -102,6 +103,8 @@ namespace Core.Ball.Components
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            var velocity = _rigidbody.linearVelocity;
+
             if (collision.gameObject.TryGetComponent(out PlatformInstance platform))
             {
                 var offset = (_ball.Transform.position.x - _platform.Transform.position.x) / (_platformWidth / 2f);
@@ -115,25 +118,13 @@ namespace Core.Ball.Components
                 else
                     direction.y = Mathf.Abs(direction.y);
 
-                var velocity = direction * _targetSpeed;
-
-                if (Mathf.Abs(velocity.y) < MinVerticalVelocity)
-                {
-                    var currentVy = _rigidbody.linearVelocity.y;
-                    velocity.y = Mathf.Sign(currentVy) * MinVerticalVelocity;
-                }
+                velocity = direction * _targetSpeed;
 
                 _concern?.OnNext(Unit.Default);
-                _rigidbody.linearVelocity = velocity;
-                CorrectTrajectoryIfNeeded();
-                
                 _platformCollisionCount++;
                 ChangeSpeed();
-                
-                return;
             }
-
-            if (collision.collider.TryGetComponent(out Brick brick))
+            else if (collision.collider.TryGetComponent(out Brick brick))
             {
                 if (!_damagedThisFixedStep)
                 {
@@ -141,42 +132,25 @@ namespace Core.Ball.Components
                     _damagedThisFixedStep = true;
                 }
 
-                var velocity = _rigidbody.linearVelocity;
                 if (velocity.y < 0f)
                     velocity.y = -Mathf.Abs(velocity.y);
-
-                _rigidbody.linearVelocity = velocity;
-                CorrectTrajectoryIfNeeded();
 
                 _brickCollisionCount++;
                 ChangeSpeed();
-                return;
             }
-
+            else
             {
-                var velocity = _rigidbody.linearVelocity;
                 velocity.x += Random.Range(-HorizontalJitter, HorizontalJitter);
-
-                if (velocity.y < 0f)
-                    velocity.y = -Mathf.Abs(velocity.y);
-
-                _rigidbody.linearVelocity = velocity;
-                CorrectTrajectoryIfNeeded();
             }
-        }
 
-        private void CorrectTrajectoryIfNeeded()
-        {
-            var velocity = _rigidbody.linearVelocity;
-            if (velocity == Vector2.zero) return;
+            if (Mathf.Abs(velocity.y) < MinVerticalVelocity)
+                velocity.y = Mathf.Sign(velocity.y) * MinVerticalVelocity;
 
-            float angle = Mathf.Abs(Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
-
-            if (angle < 5f || angle > 85f)
-            {
+            float angleCheck = Mathf.Abs(Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
+            if (angleCheck < MinAngle || angleCheck > (90f - MinAngle))
                 velocity = Quaternion.Euler(0, 0, Random.Range(-7f, 7f)) * velocity;
-                _rigidbody.linearVelocity = velocity;
-            }
+
+            _rigidbody.linearVelocity = velocity;
         }
 
         private void ChangeSpeed()
