@@ -8,16 +8,19 @@ namespace Core.Configs.Ball
     public class BallConfig : ScriptableConfig
     {
         [Header("Movement Settings")]
-        [SerializeField] private float _speed = 8f;
+        [SerializeField] private float _speed = 1f;
         [SerializeField] private BallStateType _ballStateType = BallStateType.Waiting;
         [SerializeField] private float _verticalVelocity = 10f;
         [SerializeField] private float _maxAngle = 60f;    
-        [SerializeField] private float _startEpsilon = 0.05f;  
+        [SerializeField] private float _startEpsilon = 0.05f;
+        [SerializeField] private float _maxSpeed = 15f;
 
-        [Header("Anti-Loop Settings")]
-        [SerializeField] private int _positionMemorySize = 50;
-        [SerializeField] private int _repeatThreshold = 3;
-        [SerializeField] private float _positionTolerance = 0.05f;
+        [Header("Acceleration Settings")]
+        [SerializeField] private int _platformLoopCount = 5;
+        [SerializeField] private float _platformAcceleration = 0.2f;
+
+        [SerializeField] private int _brickLoopCount = 10;
+        [SerializeField] private float _brickAcceleration = 0.1f;
 
         public float Speed => _speed;
         public BallStateType StateType
@@ -29,9 +32,12 @@ namespace Core.Configs.Ball
         public float VerticalVelocity => _verticalVelocity;
         public float MaxAngle => _maxAngle;
         public float StartEpsilon => _startEpsilon;
+        public float MaxSpeed => _maxSpeed;
 
-        public int PositionMemorySize => _positionMemorySize;
-        public int RepeatThreshold => _repeatThreshold;
-        public float PositionTolerance => _positionTolerance;
+        public int PlatformLoopCount => _platformLoopCount;
+        public float PlatformAcceleration => _platformAcceleration;
+
+        public int BrickLoopCount => _brickLoopCount;
+        public float BrickAcceleration => _brickAcceleration;
     }
 }

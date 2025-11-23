@@ -22,7 +22,7 @@ namespace Core.Audio
 
         private void Start()
         {
-            _handler.PlayMusic(_config.LevelMusic);
+            _handler.PlayMusic(_config.LevelMusic, true);
         }
     }
 }

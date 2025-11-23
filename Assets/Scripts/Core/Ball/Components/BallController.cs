@@ -31,11 +31,16 @@ namespace Core.Ball.Components
         private const float MinVerticalVelocity = 0.2f;
         private const float HorizontalJitter = 0.1f;
 
+        private float _targetSpeed;
+        private int _platformCollisionCount;
+        private int _brickCollisionCount;
+
         private BallConfig Config => _ball.Stats;
 
         private void Awake()
         {
             Config.StateType = BallStateType.Waiting;
+            _targetSpeed = Config.Speed;
 
             _circleCollider = GetComponent<CircleCollider2D>();
             _ballRadius = _circleCollider.radius * transform.localScale.x;
@@ -78,10 +83,8 @@ namespace Core.Ball.Components
             transform.position = _fixedBallPoint.position + new Vector3(0f, _ballRadius + Config.StartEpsilon, 0f);
             Physics2D.SyncTransforms();
 
-            var targetSpeed = Config.Speed;
-            var desiredVertical = Mathf.Min(Config.VerticalVelocity, targetSpeed);
-
-            var vx = Mathf.Sqrt(Mathf.Max(0f, targetSpeed * targetSpeed - desiredVertical * desiredVertical));
+            var desiredVertical = Mathf.Min(Config.VerticalVelocity, _targetSpeed);
+            var vx = Mathf.Sqrt(Mathf.Max(0f, _targetSpeed * _targetSpeed - desiredVertical * desiredVertical));
             var velocity = new Vector2(vx, desiredVertical);
 
             _rigidbody.linearVelocity = velocity;
@@ -112,17 +115,21 @@ namespace Core.Ball.Components
                 else
                     direction.y = Mathf.Abs(direction.y);
 
-                var velocity = direction * Config.Speed;
+                var velocity = direction * _targetSpeed;
 
                 if (Mathf.Abs(velocity.y) < MinVerticalVelocity)
                 {
-                    float currentVy = _rigidbody.linearVelocity.y;
+                    var currentVy = _rigidbody.linearVelocity.y;
                     velocity.y = Mathf.Sign(currentVy) * MinVerticalVelocity;
                 }
 
                 _concern?.OnNext(Unit.Default);
                 _rigidbody.linearVelocity = velocity;
                 CorrectTrajectoryIfNeeded();
+                
+                _platformCollisionCount++;
+                ChangeSpeed();
+                
                 return;
             }
 
@@ -140,6 +147,9 @@ namespace Core.Ball.Components
 
                 _rigidbody.linearVelocity = velocity;
                 CorrectTrajectoryIfNeeded();
+
+                _brickCollisionCount++;
+                ChangeSpeed();
                 return;
             }
 
@@ -166,6 +176,21 @@ namespace Core.Ball.Components
             {
                 velocity = Quaternion.Euler(0, 0, Random.Range(-7f, 7f)) * velocity;
                 _rigidbody.linearVelocity = velocity;
+            }
+        }
+
+        private void ChangeSpeed()
+        {
+            if (_platformCollisionCount >= Config.PlatformLoopCount)
+            {
+                _targetSpeed = Mathf.Min(_targetSpeed + Config.PlatformAcceleration, Config.MaxSpeed);
+                _platformCollisionCount = 0;
+            }
+
+            if (_brickCollisionCount >= Config.BrickLoopCount)
+            {
+                _targetSpeed = Mathf.Min(_targetSpeed + Config.BrickAcceleration, Config.MaxSpeed);
+                _brickCollisionCount = 0;
             }
         }
     }
