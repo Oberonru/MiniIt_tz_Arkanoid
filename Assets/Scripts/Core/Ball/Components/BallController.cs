@@ -1,7 +1,7 @@
 ﻿using System;
 using Core.Bricks;
-using Core.Platform;
 using Core.Configs.Ball;
+using Core.Platform;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,10 +16,11 @@ namespace Core.Ball.Components
         [SerializeField] private BallInstance _ball;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Transform _fixedBallPoint;
-
+        
         public IObservable<Unit> OnPlatformConcern => _concern;
-        public Subject<Unit> _concern = new();
+        private Subject<Unit> _concern = new();
 
+        private BallStateType _currentState = BallStateType.Waiting;
         private Rigidbody2D _rigidbody;
         private Vector2 _currentPosition;
         private float _ballRadius;
@@ -27,11 +28,6 @@ namespace Core.Ball.Components
         private CircleCollider2D _circleCollider;
 
         private bool _damagedThisFixedStep;
-
-        private const float MinVerticalVelocity = 0.2f;
-        private const float HorizontalJitter = 0.1f;
-        private const float MinAngle = 10f;
-
         private float _targetSpeed;
         private int _platformCollisionCount;
         private int _brickCollisionCount;
@@ -40,7 +36,6 @@ namespace Core.Ball.Components
 
         private void Awake()
         {
-            Config.StateType = BallStateType.Waiting;
             _targetSpeed = Config.Speed;
 
             _circleCollider = GetComponent<CircleCollider2D>();
@@ -56,17 +51,18 @@ namespace Core.Ball.Components
             RefreshBallPosition();
         }
 
-        private void OnEnable()
-        {
-            _platform.Controller.OnTouch.Take(1).Subscribe(_ => BallMoving()).AddTo(this);
-        }
-
         private void OnValidate()
         {
             if (_platform == null) _platform = FindObjectOfType<PlatformInstance>();
             if (_ball == null) _ball = GetComponent<BallInstance>();
         }
 
+        private void OnEnable()
+        {
+            _platform.Controller.OnTouch.Take(1).
+                Subscribe(_ => BallMoving()).AddTo(this);
+        }
+        
         private void Update()
         {
             RefreshBallPosition();
@@ -77,9 +73,17 @@ namespace Core.Ball.Components
             _damagedThisFixedStep = false;
         }
 
+        public void Reset()
+        {
+            _currentState = BallStateType.Waiting;
+            ResetPosition();
+        }
+
         private async void BallMoving()
         {
-            Config.StateType = BallStateType.Moving;
+            if (_currentState == BallStateType.Moving) return;
+            
+            _currentState = BallStateType.Moving;
 
             transform.position = _fixedBallPoint.position + new Vector3(0f, _ballRadius + Config.StartEpsilon, 0f);
             Physics2D.SyncTransforms();
@@ -93,12 +97,17 @@ namespace Core.Ball.Components
 
         private void RefreshBallPosition()
         {
-            if (Config.StateType == BallStateType.Waiting)
+            if (_currentState == BallStateType.Waiting)
             {
-                _currentPosition = _fixedBallPoint.position + new Vector3(0f, _ballRadius, 0f);
+                ResetPosition();
                 transform.position = _currentPosition;
-                _rigidbody.linearVelocity = Vector2.zero;
             }
+        }
+
+        private void ResetPosition()
+        {
+            _currentPosition = _fixedBallPoint.position + new Vector3(0f, _ballRadius, 0f);
+            _rigidbody.linearVelocity = Vector2.zero;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -140,14 +149,14 @@ namespace Core.Ball.Components
             }
             else
             {
-                velocity.x += Random.Range(-HorizontalJitter, HorizontalJitter);
+                velocity.x += Random.Range(-Config.HorizontalJitter, Config.HorizontalJitter);
             }
 
-            if (Mathf.Abs(velocity.y) < MinVerticalVelocity)
-                velocity.y = Mathf.Sign(velocity.y) * MinVerticalVelocity;
+            if (Mathf.Abs(velocity.y) < Config.MinVerticalVelocity)
+                velocity.y = Mathf.Sign(velocity.y) * Config.MinVerticalVelocity;
 
-            float angleCheck = Mathf.Abs(Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
-            if (angleCheck < MinAngle || angleCheck > (90f - MinAngle))
+            var angleCheck = Mathf.Abs(Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
+            if (angleCheck < Config.MinAngle || angleCheck > (90f - Config.MinAngle))
                 velocity = Quaternion.Euler(0, 0, Random.Range(-7f, 7f)) * velocity;
 
             _rigidbody.linearVelocity = velocity;

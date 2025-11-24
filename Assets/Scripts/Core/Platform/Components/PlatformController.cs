@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.BaseComponents;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +7,7 @@ using UnityEngine.InputSystem;
 namespace Core.Platform.Components
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlatformController : MonoBehaviour
+    public class PlatformController : MonoBehaviour, IStateComponent
     {
         [SerializeField] private PlatformInstance _platform;
         public IObservable<Unit> OnTouch => _onTouch;
@@ -35,6 +36,12 @@ namespace Core.Platform.Components
             Move();
         }
 
+        public void Reset()
+        {
+            _isTouched = false;
+            _rigidbody.position = new Vector2(0, -4.6f);
+        }
+        
         private void OnMove(InputValue value)
         {
             _inputVector = value.Get<Vector2>();
@@ -73,6 +80,16 @@ namespace Core.Platform.Components
             var target = new Vector2(worldPos.x + _touchOffset.x, _rigidbody.position.y);
 
             _rigidbody.MovePosition(target);
+        }
+
+        public void Enable()
+        {
+            enabled = true;
+        }
+
+        public void Disable()
+        {
+            enabled = false;
         }
     }
 }

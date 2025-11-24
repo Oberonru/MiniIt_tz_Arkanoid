@@ -1,51 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Core.Bricks;
-using Core.Gameplay;
-using Core.UI.Handlers;
-using Core.UI.Model;
 using Core.UI.View;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Core.Game
 {
     public class GameManager : MonoBehaviour
     {
-        [Inject] private IScreenHandler _screenHandler;
-        [SerializeField] private LoseZone _loseZone;
         [SerializeField] private ScoreView _view;
+        public IObservable<Unit> OnWin => _win;
+        private Subject<Unit> _win = new();
 
         private List<Brick> _bricks = new();
-
-        private void OnEnable()
-        {
-            _loseZone.OnLose.Subscribe(_ => Lose())
-                .AddTo(this);
-        }
 
         public void RegisterBrick(Brick brick)
         {
             if (brick == null) return;
 
             _bricks.Add(brick);
-            
-            brick.HealthComponent.OnDestroyed.
-                Subscribe(_ =>
+
+            brick.HealthComponent.OnDestroyed.Subscribe(_ =>
+            {
+                _view.AddScore(brick.Reward);
+                _bricks.Remove(brick);
+
+                if (_bricks.Count == 0)
                 {
-                    _view.AddScore(brick.Reward);
-                    _bricks.Remove(brick);
-
-                    if (_bricks.Count <= 0)
-                    {
-                        _screenHandler.SetScreen(ScreenType.WinScreen);
-                    }
-                }).AddTo(this);
-        }
-
-        private void Lose()
-        {
-            _screenHandler.SetScreen(ScreenType.LoseScreen);
+                    _win.OnNext(Unit.Default);
+                }
+            }).AddTo(this);
         }
     }
 }

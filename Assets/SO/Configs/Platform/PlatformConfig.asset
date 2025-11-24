@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439d84f7f4964237a68e3d01d082a67f, type: 3}
   m_Name: PlatformConfig
   m_EditorClassIdentifier: C::Core.Configs.Platform.PlatformConfig
-  _maxHealth: 2
+  _maxHealth: 3
   _speed: 12
