@@ -30,6 +30,7 @@ namespace Core.BaseComponents
             {
                 var current = Mathf.Clamp(value, 0, MaxHealth);
                 _currentHealth = current;
+                _changed?.OnNext(_currentHealth);
             }
         }
 
