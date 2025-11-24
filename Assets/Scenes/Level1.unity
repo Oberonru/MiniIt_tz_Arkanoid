@@ -262,6 +262,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 740691606114816113, guid: 2187e42fb1efbfc45908ed5c16dc57c5, type: 3}
   m_PrefabInstance: {fileID: 1226421444982879157}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &50597478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5376834858513906897, guid: 2187e42fb1efbfc45908ed5c16dc57c5, type: 3}
+  m_PrefabInstance: {fileID: 1226421444982879157}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50597462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da541206d6941ec96dd9e4f80e8a190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: C::Core.BaseComponents.HealthComponent
 --- !u!1 &53357526
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,6 +3638,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4172855992633558762, guid: 2187e42fb1efbfc45908ed5c16dc57c5, type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 50597478}
     - target: {fileID: 4392898811119662550, guid: 2187e42fb1efbfc45908ed5c16dc57c5, type: 3}
       propertyPath: m_Name
       value: Platform
