@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d9fdc1a2fdc8e148b3e9f1ab3ac284e, type: 3}
-  m_Name: RedTile
+  m_Name: BlueTile
   m_EditorClassIdentifier: C::Core.Bricks.SO.BrickTile
-  m_Sprite: {fileID: 21300000, guid: 768953b8a9be3ce4db6b15581225da58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e5286066a507274aa303754d7350224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -31,12 +31,12 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 5082971555909186877, guid: e764a2d7e826659459073385b03796a4, type: 3}
+  m_InstancedGameObject: {fileID: 2522574643416008772, guid: b61641ff0b149c4438aa98701c08bfc1, type: 3}
   m_Flags: 1
   m_ColliderType: 1
-  _destroyedSprite: {fileID: 21300000, guid: 31b35d7fd71270744977c241d1bc4bb0, type: 3}
-  _maxHealth: 3
+  _destroyedSprite: {fileID: 21300000, guid: 21afcbe7bc04da34d9d7a3473dc0f3b9, type: 3}
+  _maxHealth: 2
   _currentHealth: 0
   _hitColor: {r: 0.3529412, g: 0.10588236, b: 0.03137255, a: 1}
-  _prefab: {fileID: 5082971555909186877, guid: e764a2d7e826659459073385b03796a4, type: 3}
-  _reward: 10
+  _prefab: {fileID: 2522574643416008772, guid: b61641ff0b149c4438aa98701c08bfc1, type: 3}
+  _reward: 5
