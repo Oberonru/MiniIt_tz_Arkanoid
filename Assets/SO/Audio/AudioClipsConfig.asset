@@ -18,3 +18,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b2003619acdc24443bca763eba3bb6fa, type: 3}
   _destroyClip: {fileID: 8300000, guid: 14178fdd2cebafa468e48c91bf023575, type: 3}
   _platformConcern: {fileID: 8300000, guid: cdb37d071043d6c42805b60136d1ffca, type: 3}
+  _restartClip: {fileID: 8300000, guid: aa717e9cfeecc83489f3ba7a303bbab7, type: 3}
+  _gameOverClip: {fileID: 8300000, guid: e54117f1f1621c747b381952a8957d29, type: 3}
+  _winClip: {fileID: 8300000, guid: 99f7b9ffdae0b944baf0ecf0aaf3d190, type: 3}
