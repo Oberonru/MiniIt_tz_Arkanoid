@@ -1,33 +1,85 @@
-﻿using Core.Bricks;
+﻿using System;
+using Core.Bricks;
 using Core.Bricks.SO;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Core.Game
 {
     public class LevelLoader : MonoBehaviour
     {
         [Inject] private DiContainer _di;
-        [SerializeField] private Tilemap _levelTilemap;
         [SerializeField] private GameManager _gameManager;
 
-        private void Awake()
+        private const string PhoneLevelKey = "Level_phone";
+        private const string IpadLevelKey = "Level_ipad";
+
+        private Tilemap _currentTilemap;
+
+        private async void Awake()
         {
-            SpawnBricksFromTilemap();
+            try
+            {
+                var key = SelectTilemapByDevice();
+
+                AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(key);
+                await handle.Task;
+
+                if (handle.Status == AsyncOperationStatus.Succeeded)
+                {
+                    var levelPrefab = handle.Result;
+                    var levelInstance = _di.InstantiatePrefab(levelPrefab, Vector3.zero, Quaternion.identity, transform);
+
+                    _currentTilemap = levelInstance.GetComponentInChildren<Tilemap>();
+                    SpawnBricks();
+                }
+                else
+                {
+                    Debug.LogError($"Failed to load level with key: {key}");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"LevelLoader exception: {e}");
+            }
         }
 
-        private void SpawnBricksFromTilemap()
+        private string SelectTilemapByDevice()
         {
-            foreach (var pos in _levelTilemap.cellBounds.allPositionsWithin)
+            // iPad simulation
+            // var dpi = 160f; 
+            // var width = 2048;
+            // var height = 1536;
+            
+            var dpi = Screen.dpi;
+            if (dpi == 0.0f)
             {
-                if (!_levelTilemap.HasTile(pos)) continue;
+                Debug.LogWarning("DPI is unavailable, fallback to iPad level");
+                return IpadLevelKey;
+            }
 
-                TileBase tile = _levelTilemap.GetTile(pos);
+            var width = Screen.width;
+            var height = Screen.height;
+            var diagonal = Mathf.Sqrt(width * width + height * height);
+            var diagonalInches = diagonal / dpi;
+
+            return diagonalInches >= 7.0f ? IpadLevelKey : PhoneLevelKey;
+        }
+
+        private void SpawnBricks()
+        {
+            foreach (var pos in _currentTilemap.cellBounds.allPositionsWithin)
+            {
+                if (!_currentTilemap.HasTile(pos)) continue;
+
+                TileBase tile = _currentTilemap.GetTile(pos);
 
                 if (tile is BrickTile brickTile)
                 {
-                    var worldPos = _levelTilemap.CellToWorld(pos) + _levelTilemap.tileAnchor;
+                    var worldPos = _currentTilemap.CellToWorld(pos) + _currentTilemap.tileAnchor;
 
                     var brickObj = _di.InstantiatePrefab(brickTile.Prefab, worldPos, Quaternion.identity, transform);
 
@@ -37,7 +89,7 @@ namespace Core.Game
                 }
             }
 
-            _levelTilemap.ClearAllTiles(); 
+            _currentTilemap.ClearAllTiles();
         }
     }
 }
