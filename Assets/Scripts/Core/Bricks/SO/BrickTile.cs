@@ -1,3 +1,4 @@
+using Core.Bricks.Model;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -12,6 +13,7 @@ namespace Core.Bricks.SO
         [SerializeField] private Color _hitColor;
         [SerializeField] private GameObject _prefab;
         [SerializeField] private int _reward;
+        [SerializeField] private BrickType _brickType = BrickType.Brick;
 
         public Sprite DestroyedSprite => _destroyedSprite;
         public int MaxHealth => _maxHealth;
@@ -19,5 +21,6 @@ namespace Core.Bricks.SO
         public Color HitColor => _hitColor;
         public GameObject Prefab => _prefab;
         public int Reward => _reward;
+        public BrickType BrickType => _brickType;
     }
 }

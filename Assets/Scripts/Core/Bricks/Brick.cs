@@ -1,5 +1,6 @@
 ﻿using Core.Audio;
 using Core.BaseComponents;
+using Core.Bricks.Model;
 using Core.Configs.Audio;
 using UniRx;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Core.Bricks
         [Inject] private AudioClipsConfig _config;
         [SerializeField] private Sprite _damagedSprite;
         [SerializeField] private HealthComponent _healthComponent;
+        [SerializeField] private BrickType _brickType = BrickType.Brick;
         public HealthComponent HealthComponent => _healthComponent;
 
         private SpriteRenderer _spriteRenderer;
@@ -30,7 +32,15 @@ namespace Core.Bricks
         {
             _healthComponent.OnHealthChanged.Subscribe(current =>
             {
-                _audioHandler?.PlaySfx(_config.BrickHits);
+                if (_brickType == BrickType.Brick)
+                {
+                    _audioHandler?.PlaySfx(_config.BrickHits);
+                }
+
+                else if (_brickType == BrickType.Wall)
+                {
+                    _audioHandler?.PlaySfx(_config.WallHit);
+                }
 
                 if (current == 1)
                     _spriteRenderer.sprite = _damagedSprite;
@@ -48,11 +58,12 @@ namespace Core.Bricks
             if (_healthComponent == null) _healthComponent = GetComponent<HealthComponent>();
         }
 
-        public void Init(int health, Sprite damagedSprite, int reward)
+        public void Init(int health, Sprite damagedSprite, int reward, BrickType brickType)
         {
             _healthComponent.Init(health);
             _damagedSprite = damagedSprite;
             _reward = reward;
+            _brickType = brickType;
         }
     }
 }

@@ -11,9 +11,10 @@ namespace Core.Audio
 
         public void PlaySfx(AudioClip clip)
         {
-            _sfxSource.pitch = Random.Range(_minPitch, _minPitch);
+            ChangePitch();
             _sfxSource.PlayOneShot(clip);
         }
+
 
         public void PlaySfx(AudioClip[] clips)
         {
@@ -25,6 +26,7 @@ namespace Core.Audio
             }
 
             var rnd = Random.Range(0, clips.Length);
+            ChangePitch();
             _musicSource.PlayOneShot(clips[rnd]);
         }
 
@@ -38,6 +40,11 @@ namespace Core.Audio
         public void StopMusic()
         {
             _musicSource.Stop();
+        }
+
+        private void ChangePitch()
+        {
+            _sfxSource.pitch = Random.Range(_minPitch, _minPitch);
         }
     }
 }

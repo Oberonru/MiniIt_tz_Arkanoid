@@ -32,7 +32,7 @@ namespace Core.Game
                     var brickObj = _di.InstantiatePrefab(brickTile.Prefab, worldPos, Quaternion.identity, transform);
 
                     var brick = brickObj.GetComponent<Brick>();
-                    brick.Init(brickTile.MaxHealth, brickTile.DestroyedSprite, brickTile.Reward);
+                    brick.Init(brickTile.MaxHealth, brickTile.DestroyedSprite, brickTile.Reward, brickTile.BrickType);
                     _gameManager.RegisterBrick(brick);
                 }
             }

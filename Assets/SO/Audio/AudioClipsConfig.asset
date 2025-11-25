@@ -21,3 +21,4 @@ MonoBehaviour:
   _restartClip: {fileID: 8300000, guid: aa717e9cfeecc83489f3ba7a303bbab7, type: 3}
   _gameOverClip: {fileID: 8300000, guid: e54117f1f1621c747b381952a8957d29, type: 3}
   _winClip: {fileID: 8300000, guid: 99f7b9ffdae0b944baf0ecf0aaf3d190, type: 3}
+  _wallHit: {fileID: 8300000, guid: de134e25b2bd1d641a2ce45993a52f53, type: 3}
