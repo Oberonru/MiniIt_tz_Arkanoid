@@ -1147,6 +1147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 471362191}
   - component: {fileID: 471362192}
+  - component: {fileID: 471362193}
   m_Layer: 5
   m_Name: Circle Chevron Left
   m_TagString: Untagged
@@ -1305,6 +1306,18 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 471362193}
+            m_TargetAssemblyTypeName: Core.Audio.ButtonClickSound, C
+            m_MethodName: PlayClickSound
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       BehaviourName: 4
       Receiver:
         ConnectionMode: 1
@@ -1325,6 +1338,18 @@ MonoBehaviour:
     Category: Direction
     Name: Left
     Custom: 1
+--- !u!114 &471362193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471362190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c34a965d2c467196e34ef9cce8d9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: C::Core.Audio.ButtonClickSound
 --- !u!1 &618427570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1366,7 @@ GameObject:
   - component: {fileID: 618427574}
   - component: {fileID: 618427573}
   - component: {fileID: 618427572}
+  - component: {fileID: 618427579}
   m_Layer: 5
   m_Name: Simple Button (Large)
   m_TagString: Untagged
@@ -3333,6 +3359,38 @@ MonoBehaviour:
           Custom: 0
       Cooldown: 0
       Selectable: {fileID: 618427577}
+    - Enabled: 1
+      EventName: PointerExit
+      Runners: []
+      Event:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 618427579}
+            m_TargetAssemblyTypeName: Core.Audio.ButtonClickSound, C
+            m_MethodName: PlayClickSound
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      BehaviourName: 1
+      Receiver:
+        ConnectionMode: 1
+        SignalProviderId:
+          Type: 0
+          Category: Pointer
+          Name: Exit
+        ProviderReference: {fileID: 0}
+        StreamId:
+          Category: None
+          Name: None
+          Custom: 0
+      Cooldown: 0
+      Selectable: {fileID: 618427577}
     SignalSource: {fileID: 618427570}
     Selectable: {fileID: 618427577}
   Id:
@@ -3351,6 +3409,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &618427579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618427570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c34a965d2c467196e34ef9cce8d9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: C::Core.Audio.ButtonClickSound
 --- !u!1 &631558630
 GameObject:
   m_ObjectHideFlags: 0
@@ -10514,6 +10584,7 @@ GameObject:
   - component: {fileID: 1635826741}
   - component: {fileID: 1635826740}
   - component: {fileID: 1635826739}
+  - component: {fileID: 1635826743}
   - component: {fileID: 1635826738}
   - component: {fileID: 1635826737}
   - component: {fileID: 1635826736}
@@ -12495,6 +12566,18 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 1
             m_CallState: 2
+          - m_Target: {fileID: 1635826743}
+            m_TargetAssemblyTypeName: Core.Audio.ButtonClickSound, C
+            m_MethodName: PlayClickSound
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       BehaviourName: 4
       Receiver:
         ConnectionMode: 1
@@ -12527,6 +12610,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1635826743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635826734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c34a965d2c467196e34ef9cce8d9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: C::Core.Audio.ButtonClickSound
 --- !u!1 &1639712936
 GameObject:
   m_ObjectHideFlags: 0
@@ -12543,6 +12638,7 @@ GameObject:
   - component: {fileID: 1639712940}
   - component: {fileID: 1639712939}
   - component: {fileID: 1639712938}
+  - component: {fileID: 1639712945}
   m_Layer: 5
   m_Name: Simple Button (Large) (2)
   m_TagString: Untagged
@@ -14502,7 +14598,39 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
   Behaviours:
-    Behaviours: []
+    Behaviours:
+    - Enabled: 1
+      EventName: PointerEnter
+      Runners: []
+      Event:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1639712945}
+            m_TargetAssemblyTypeName: Core.Audio.ButtonClickSound, C
+            m_MethodName: PlayClickSound
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      BehaviourName: 0
+      Receiver:
+        ConnectionMode: 1
+        SignalProviderId:
+          Type: 0
+          Category: Pointer
+          Name: Enter
+        ProviderReference: {fileID: 0}
+        StreamId:
+          Category: None
+          Name: None
+          Custom: 0
+      Cooldown: 0
+      Selectable: {fileID: 1639712943}
     SignalSource: {fileID: 1639712936}
     Selectable: {fileID: 1639712943}
   Id:
@@ -14521,6 +14649,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1639712945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639712936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c34a965d2c467196e34ef9cce8d9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: C::Core.Audio.ButtonClickSound
 --- !u!1 &1800036006
 GameObject:
   m_ObjectHideFlags: 0

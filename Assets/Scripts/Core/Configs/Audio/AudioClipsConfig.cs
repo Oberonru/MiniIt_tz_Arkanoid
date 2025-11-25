@@ -15,6 +15,7 @@ namespace Core.Configs.Audio
         [SerializeField] private AudioClip _gameOverClip;
         [SerializeField] private AudioClip _winClip;
         [SerializeField] private AudioClip _wallHit;
+        [SerializeField] private AudioClip _clickButtonClip;
         
         public AudioClip LevelMusic => _levelMusic;
         public AudioClip[] BrickHits => _brickHits;
@@ -24,5 +25,6 @@ namespace Core.Configs.Audio
         public AudioClip GameOverClip => _gameOverClip;
         public AudioClip WinClip => _winClip;
         public AudioClip WallHit => _wallHit;
+        public AudioClip ClickButtonClip => _clickButtonClip;
     }
 }
