@@ -28,12 +28,14 @@ namespace Core.Bricks
 
         private void OnEnable()
         {
-            _healthComponent.OnHit.Subscribe(_ =>
+            _healthComponent.OnHealthChanged.Subscribe(current =>
             {
                 _audioHandler?.PlaySfx(_config.BrickHits);
-                _spriteRenderer.sprite = _damagedSprite;
+
+                if (current == 1)
+                    _spriteRenderer.sprite = _damagedSprite;
             }).AddTo(this);
-            
+
             _healthComponent.OnDestroyed.Take(1).Subscribe(_ =>
             {
                 _audioHandler?.PlaySfx(_config.DestroyClip);
