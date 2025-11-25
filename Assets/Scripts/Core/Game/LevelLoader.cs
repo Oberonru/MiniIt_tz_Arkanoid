@@ -31,7 +31,8 @@ namespace Core.Game
                 if (handle.Status == AsyncOperationStatus.Succeeded)
                 {
                     var levelPrefab = handle.Result;
-                    var levelInstance = _di.InstantiatePrefab(levelPrefab, Vector3.zero, Quaternion.identity, transform);
+                    var levelInstance =
+                        _di.InstantiatePrefab(levelPrefab, Vector3.zero, Quaternion.identity, transform);
 
                     _currentTilemap = levelInstance.GetComponentInChildren<Tilemap>();
                     SpawnBricks();
@@ -53,7 +54,7 @@ namespace Core.Game
             // var dpi = 160f; 
             // var width = 2048;
             // var height = 1536;
-            
+
             var dpi = Screen.dpi;
             if (dpi == 0.0f)
             {
