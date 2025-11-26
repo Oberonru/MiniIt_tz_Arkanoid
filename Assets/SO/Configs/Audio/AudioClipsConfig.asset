@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AudioClipsConfig
   m_EditorClassIdentifier: C::Core.Configs.Audio.AudioClipsConfig
   _levelMusic: {fileID: 8300000, guid: 9fbe4e063e14f9b4b94c9ec71dd7c7ed, type: 3}
+  _menuMusic: {fileID: 8300000, guid: 34ef6b3edf6d56a4fa78513811897e03, type: 3}
   _brickHits:
   - {fileID: 8300000, guid: f041d009512098d4b8066c26b03a73d1, type: 3}
   - {fileID: 8300000, guid: b2003619acdc24443bca763eba3bb6fa, type: 3}
