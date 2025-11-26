@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: C::Core.Audio.Installer.AudioHandlerInstaller
   _asSingle: 1
-  _dontDestroyOnLoad: 1
+  _dontDestroyOnLoad: 0
   _prefab: {fileID: 6314748570357076331, guid: 58002a8f3d99f9b4fba238821065d185, type: 3}
 --- !u!1 &1020333524421006925
 GameObject:
