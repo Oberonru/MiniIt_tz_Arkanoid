@@ -30,6 +30,7 @@ namespace Core.Handlers
                 {
                     _platform.Health.TakeDamage(1);
                     _audioHandler.PlaySfx(_clipsConfig.RestartClip);
+                    _ball.Controller.ResetSpeed();
                     ResetPosition();
                 })
                 .AddTo(this);

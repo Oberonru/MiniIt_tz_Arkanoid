@@ -176,5 +176,10 @@ namespace Core.Ball.Components
                 _brickCollisionCount = 0;
             }
         }
+
+        public void ResetSpeed()
+        {
+            _targetSpeed = Config.Speed;
+        }
     }
 }
