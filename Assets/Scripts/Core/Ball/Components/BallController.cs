@@ -166,7 +166,7 @@ namespace Core.Ball.Components
         {
             if (_platformCollisionCount >= Config.PlatformLoopCount)
             {
-                _targetSpeed = Mathf.Min(_targetSpeed + Config.PlatformAcceleration, Config.MaxSpeed);
+                _targetSpeed = Mathf.Min(_targetSpeed + Config.BallAcceleration, Config.MaxSpeed);
                 _platformCollisionCount = 0;
             }
 

@@ -17,8 +17,11 @@ MonoBehaviour:
   _verticalVelocity: 15
   _maxAngle: 60
   _startEpsilon: 0.05
-  _maxSpeed: 15
+  _maxSpeed: 10
   _platformLoopCount: 4
-  _platformAcceleration: 0.2
+  ballAcceleration: 0.2
   _brickLoopCount: 2
   _brickAcceleration: 0.1
+  _minVerticalVelocity: 0.2
+  _horizontalJitter: 0.1
+  _minAngle: 10

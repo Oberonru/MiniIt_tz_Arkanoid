@@ -17,7 +17,7 @@ namespace Core.Configs.Ball
 
         [Header("Acceleration Settings")]
         [SerializeField] private int _platformLoopCount = 5;
-        [SerializeField] private float _platformAcceleration = 0.2f;
+        [SerializeField] private float ballAcceleration = 0.2f;
         [SerializeField] private int _brickLoopCount = 10;
         [SerializeField] private float _brickAcceleration = 0.1f;
         [SerializeField] private float _minVerticalVelocity = 0.2f;
@@ -32,7 +32,7 @@ namespace Core.Configs.Ball
         public float MaxSpeed => _maxSpeed;
 
         public int PlatformLoopCount => _platformLoopCount;
-        public float PlatformAcceleration => _platformAcceleration;
+        public float BallAcceleration => ballAcceleration;
 
         public int BrickLoopCount => _brickLoopCount;
         public float BrickAcceleration => _brickAcceleration;
