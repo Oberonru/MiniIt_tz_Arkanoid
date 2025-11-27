@@ -45,6 +45,7 @@ namespace Core.Handlers
 
             _gameManager.OnWin.Take(1).Subscribe(_ =>
             {
+                _audioHandler.StopMusic();
                 _audioHandler.PlaySfx(_clipsConfig.WinClip);
                 _screenHandler.SetScreen(ScreenType.WinScreen);
                 ResetPosition();
