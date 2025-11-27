@@ -10,6 +10,6 @@ https://play.google.com/store/apps/details?id=com.OneManClan.Game004
 
 [х] Собран базовый, легко масштабируемый вариант 
 [х] Простое создание последующих уровней с помощью Tilemap → SpawnBricks, Addressables (Levels, Tiles, Prefabs), адаптация phone/iPad, UI-анимации Doozy.
-[x] Собран и протестирован билд под андроид, под ios грузится свой уровень.
+[x] Собран и протестирован билд под андроид, для ios грузится свой уровень.
 
 Версия Unity 6000.2.9f1
