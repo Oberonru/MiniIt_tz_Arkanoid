@@ -26,6 +26,8 @@ namespace Core.Game
                 _view.AddScore(brick.Reward);
                 _bricks.Remove(brick);
 
+                print(_bricks.Count);
+                
                 if (_bricks.Count == 0)
                 {
                     _win.OnNext(Unit.Default);

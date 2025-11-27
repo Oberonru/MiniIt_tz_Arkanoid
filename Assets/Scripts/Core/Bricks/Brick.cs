@@ -16,6 +16,7 @@ namespace Core.Bricks
         [SerializeField] private Sprite _damagedSprite;
         [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private BrickType _brickType = BrickType.Brick;
+        public BrickType BrickType => _brickType;
         public HealthComponent HealthComponent => _healthComponent;
 
         private SpriteRenderer _spriteRenderer;

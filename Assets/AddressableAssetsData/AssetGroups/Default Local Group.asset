@@ -15,13 +15,73 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 6cd3ec706fe052d42b7a417c44bfc7e9
   m_SerializeEntries:
+  - m_GUID: 105ef250b34469e4ea5b691d5fe56066
+    m_Address: Assets/SO/Bricks/RedTile.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ca266c41e901d944a514e3be7e5d060
+    m_Address: Assets/Prefabs/Bricks/Brick_yellow.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50d455ddbbbe8234aa1161ab34ab403b
+    m_Address: Assets/Prefabs/Bricks/Brick_orange.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b6fe18fc54f6ef4a86cc0bcd5bf11ca
+    m_Address: Assets/SO/Bricks/OrangeTile.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9383e880d39c24841a14865b3b1da887
+    m_Address: Assets/Prefabs/Bricks/Brick_green.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97fa09e9a8244364dac67716e5a2a15f
+    m_Address: Assets/SO/Bricks/GreenTile.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5ed576a5cc74f34e880018ee956a359
+    m_Address: Assets/SO/Bricks/YellowTile.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b61641ff0b149c4438aa98701c08bfc1
+    m_Address: Assets/Prefabs/Bricks/Brick_blue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c7bbb0e242bbe1a45a51e33b8c8e8498
     m_Address: Level_ipad
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cda82d53213a6ea4d8c708ac54226829
+    m_Address: Assets/SO/Bricks/BlueTile.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d45c969e9ff1dad4aac1fe18ba55c0d3
+    m_Address: Assets/Prefabs/Bricks/Brick_wall.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e764a2d7e826659459073385b03796a4
+    m_Address: Assets/Prefabs/Bricks/Brick_red.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea6b65bbe136dc141966e3259bda72fa
     m_Address: Level_phone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7bf56e4f442e194f958cf975be0e32f
+    m_Address: Assets/SO/Bricks/WallTile.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

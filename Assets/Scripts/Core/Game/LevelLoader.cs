@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Bricks;
+using Core.Bricks.Model;
 using Core.Bricks.SO;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -86,7 +87,9 @@ namespace Core.Game
 
                     var brick = brickObj.GetComponent<Brick>();
                     brick.Init(brickTile.MaxHealth, brickTile.DestroyedSprite, brickTile.Reward, brickTile.BrickType);
-                    _gameManager.RegisterBrick(brick);
+
+                    if (brick.BrickType == BrickType.Brick)
+                        _gameManager.RegisterBrick(brick);
                 }
             }
 
