@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e5286066a507274aa303754d7350224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: C::Core.Bricks.Brick
   _damagedSprite: {fileID: 21300000, guid: 21afcbe7bc04da34d9d7a3473dc0f3b9, type: 3}
   _healthComponent: {fileID: 7785716897210510103}
+  _brickType: 0
 --- !u!114 &7785716897210510103
 MonoBehaviour:
   m_ObjectHideFlags: 0

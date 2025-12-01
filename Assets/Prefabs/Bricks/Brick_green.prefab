@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1905292648708222795}
   - component: {fileID: 1639749896810884592}
   - component: {fileID: 8801389232563038232}
+  - component: {fileID: 8172753522280296749}
   m_Layer: 0
   m_Name: Brick_green
   m_TagString: Untagged
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5e4161108cd131b4b9b836810d3c1bfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -151,3 +152,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: C::Core.Bricks.Brick
   _damagedSprite: {fileID: 21300000, guid: 48f571cdebc558b4d9aac890383ec2e2, type: 3}
+  _healthComponent: {fileID: 8172753522280296749}
+  _brickType: 0
+--- !u!114 &8172753522280296749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650854912184575714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da541206d6941ec96dd9e4f80e8a190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Core::Core.BaseComponents.HealthComponent

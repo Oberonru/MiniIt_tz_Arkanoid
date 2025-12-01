@@ -2,8 +2,11 @@
 using Core.BaseComponents;
 using Core.Bricks.Model;
 using Core.Configs.Audio;
+using Core.Configs.Bricks;
 using UniRx;
 using UnityEngine;
+using VFX.Factory;
+using VFX.FloatingText;
 using Zenject;
 
 namespace Core.Bricks
@@ -12,7 +15,9 @@ namespace Core.Bricks
     public class Brick : MonoBehaviour
     {
         [Inject] private IAudioHandler _audioHandler;
-        [Inject] private AudioClipsConfig _config;
+        [Inject] private AudioClipsConfig _audioConfig;
+        [Inject] private IVFXObjectFactory _factory;
+        [Inject] private DestroyedBrickConfig _config;
         [SerializeField] private Sprite _damagedSprite;
         [SerializeField] private HealthComponent _healthComponent;
         [SerializeField] private BrickType _brickType = BrickType.Brick;
@@ -35,12 +40,16 @@ namespace Core.Bricks
             {
                 if (_brickType == BrickType.Brick)
                 {
-                    _audioHandler?.PlaySfx(_config.BrickHits);
+                    _audioHandler?.PlaySfx(_audioConfig.BrickHits);
+                    var particle = _factory.Create(_config.ParticleVfx,
+                        transform.position + new Vector3(0, 0, -1),
+                        transform.rotation);
+                    particle.PlayAnimation();
                 }
 
                 else if (_brickType == BrickType.Wall)
                 {
-                    _audioHandler?.PlaySfx(_config.WallHit);
+                    _audioHandler?.PlaySfx(_audioConfig.WallHit);
                 }
 
                 if (current == 1)
@@ -49,8 +58,18 @@ namespace Core.Bricks
 
             _healthComponent.OnDestroyed.Take(1).Subscribe(_ =>
             {
-                _audioHandler?.PlaySfx(_config.DestroyClip);
+                _audioHandler?.PlaySfx(_audioConfig.DestroyClip);
                 Destroy(gameObject);
+
+                //Testing Floating vfx effect
+                // var text = _factory.Create(_destroyedBrickConfig.FloatingText, transform.position,
+                //         transform.rotation)
+                //     as FloatingText;
+                // if (text != null)
+                // {
+                //     text.SetTextInfo(_reward.ToString(), transform.position);
+                //     text.SetColor(Color.yellow);
+                // }
             }).AddTo(this);
         }
 
