@@ -1,5 +1,4 @@
-﻿using System;
-using Core.Audio;
+﻿using Core.Audio;
 using Core.Ball;
 using Core.Configs.Audio;
 using Core.Game;
@@ -18,8 +17,8 @@ namespace Core.Handlers
         [Inject] private IScreenHandler _screenHandler;
         [Inject] private IAudioHandler _audioHandler;
         [Inject] private AudioClipsConfig _clipsConfig;
+        [Inject] private GameManager _gameManager;
         
-        [SerializeField] private GameManager _gameManager;
         [SerializeField] private LoseZone _loseZone;
         [SerializeField] private PlatformInstance _platform;
         [SerializeField] private BallInstance _ball;
