@@ -15,8 +15,7 @@ namespace Core.Platform.Components
         [SerializeField] private PlatformInstance _platform;
         public IObservable<Unit> OnTouch => _onTouch;
         private Subject<Unit> _onTouch = new();
-
-        private PlayerInput _input;
+        
         private Rigidbody2D _rigidbody;
         private Vector2 _inputVector;
         private bool _isTouched;
@@ -30,7 +29,6 @@ namespace Core.Platform.Components
 
         private void Awake()
         {
-            _input = GetComponent<PlayerInput>();
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
