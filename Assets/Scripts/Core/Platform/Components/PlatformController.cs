@@ -1,6 +1,8 @@
 ﻿using System;
 using Core.BaseComponents;
+using Core.Configs.Input;
 using Core.Game;
+using Core.Services;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +14,10 @@ namespace Core.Platform.Components
     public class PlatformController : MonoBehaviour, IStateComponent
     {
         [Inject] private IGameStateProvider _state;
+        [Inject] private InputHintService _hintService;
+        [Inject] private InputHintConfig _config;
+        [Inject] private InputHintService  _inputHint;
+        
         [SerializeField] private PlatformInstance _platform;
         public IObservable<Unit> OnTouch => _onTouch;
         private Subject<Unit> _onTouch = new();
@@ -21,6 +27,7 @@ namespace Core.Platform.Components
         private bool _isTouched;
         private Vector2 _touchOffset;
         private bool _isPaused;
+        private PlayerInput _input;
 
         private void OnEnable()
         {
@@ -29,7 +36,9 @@ namespace Core.Platform.Components
 
         private void Awake()
         {
+            _input = GetComponent<PlayerInput>();
             _rigidbody = GetComponent<Rigidbody2D>();
+            _hintService.SetPlayerInput(_input);
         }
 
         private void OnValidate()
@@ -81,6 +90,8 @@ namespace Core.Platform.Components
         private void Move()
         {
             if (!_isTouched) return;
+            
+            Debug.Log(GetTextDisplayName(_config.MoveHint));
 
             var screenPos = Pointer.current.position.ReadValue();
             var worldPos = (Vector2)Camera.main.ScreenToWorldPoint(
@@ -89,6 +100,11 @@ namespace Core.Platform.Components
             var target = new Vector2(worldPos.x + _touchOffset.x, _rigidbody.position.y);
 
             _rigidbody.MovePosition(target);
+        }
+
+        public string GetTextDisplayName(InputActionReference reference)
+        {
+            return reference.action.GetBindingDisplayString();
         }
 
         public void Enable()

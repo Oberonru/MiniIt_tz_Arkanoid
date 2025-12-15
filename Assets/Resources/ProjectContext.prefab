@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Infrastructure::Infrastructure.Services.ServiceProvider
   _elements:
   - {fileID: 11400000, guid: 60e218c448a81014a82dd36afc1e921a, type: 2}
+  - {fileID: 11400000, guid: 90b22da8fbd990e43b36aacd1166335b, type: 2}
 --- !u!1 &2184488484510825250
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,9 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbde848a211f4391b11883c85d1d4a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Core::Core.Game.Installer.GameManagerInstaller
-  _asSingle: 1
-  _dontDestroyOnLoad: 1
   _prefab: {fileID: 631508046817190979, guid: 629100a1a38192942ba0193db28e7330, type: 3}
+  _dontDestroyOnLoad: 1
 --- !u!1 &4916664341709580078
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +234,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca7b8e0fcb3a69c42bd681b808e91665, type: 2}
   - {fileID: 11400000, guid: 90722b34713a7324c81c1fb18b8fe22c, type: 2}
   - {fileID: 11400000, guid: f35c30cabcc52b04bb87831d803d90ca, type: 2}
+  - {fileID: 11400000, guid: 7dbe53cb1944a9a4e8ac074bba3ec808, type: 2}
+  - {fileID: 11400000, guid: 49405f5e87c473545956a81c31def1d3, type: 2}
 --- !u!1 &6857736749285570783
 GameObject:
   m_ObjectHideFlags: 0
